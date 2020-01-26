@@ -11,36 +11,47 @@ const classes = theme => ({
         borderRadius: 10
     },
 
-    desc: {
+    pokeName: {
         fontSize: 12,
         textTransform: 'uppercase',
         letterSpacing: '1.35mm',
         textAlign: 'center',
         alignItems: 'center',
-    }
+    },
 
+    properties: {
+        fontSize: 15,
+    }
 })
 
-class Pokemon extends React.Component {
+class Pokemon extends React.PureComponent {
     render() {
         const classes = this.props.classes
+
         return (
-            <Card className={classes.card} raised={true} elevation={4}>
+            <div>
+            <Card 
+                className={classes.card} 
+                raised={true} elevation={4} 
+                onClick={() => this.props.handleOpen(this.props.pokemon.id-1)}
+            >
                 <CardActionArea>
                     <div style={{height: 170}}>
                     <CardMedia
                         component="img"
                         alt={this.props.pokemon.name}
                         image={this.props.pokemon.img}
+                        
                     />
                     </div>
                     <CardContent>
-                        <Typography className={classes.desc}>
+                        <Typography className={classes.pokeName}>
                             {this.props.pokemon.name}
                         </Typography>
                     </CardContent>
                 </CardActionArea>
             </Card>
+            </div>
         )
     }
 }
