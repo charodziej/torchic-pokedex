@@ -95,6 +95,7 @@ class Window extends React.Component {
                                             backgroundColor: type.color,
                                             color: this.props.theme.palette.getContrastText(type.color)
                                         }}
+                                        onClick = {() => this.props.chipOnClick(type.label)}
                                     /> 
                                 )}
                             </div>

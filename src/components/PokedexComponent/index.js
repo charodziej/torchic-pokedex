@@ -2,14 +2,16 @@ import React from 'react';
 import List1 from '../../assets/pokedex.json';
 import List2 from '../../assets/pokemon.json';
 import Pokemon from '../PokemonComponent';
-import {Paper, TextField} from '@material-ui/core';
+import {Paper, FilledInput, InputAdornment, IconButton, InputLabel, FormControl} from '@material-ui/core';
 import {withStyles} from '@material-ui/core/styles';
 import Scrollbars from 'react-custom-scrollbars';
 import Window from '../WindowComponent';
+import {withRouter} from 'react-router-dom';
+import ClearIcon from '@material-ui/icons/Clear';
 
 const classes = theme => ({
     pokeWrapper: {
-        maxHeight: 'calc(100vh - 128px)',
+        maxHeight: 'calc(100vh - 180px)',
         overflow: 'auto',
         margin: theme.spacing(3),
         marginBottom: theme.spacing(1),
@@ -46,25 +48,18 @@ class Pokedex extends React.Component {
         }))
 
         this.state = {
-            ifOpen: false,
-            openPokemon: 1,
             searching: ""
         }
     }
 
     handleOpen = (id) =>
     {
-        this.setState({
-            ifOpen: true,
-            openPokemon: id
-        })
+        this.props.history.push('/pokedex/' + id)
     }
 
     handleClose = () =>
     {
-        this.setState({
-            ifOpen: false
-        })
+        this.props.history.push('/pokedex')
     }
 
     handleChange = (event) =>
@@ -74,16 +69,52 @@ class Pokedex extends React.Component {
         })
     }
 
+    chipClick = (label) =>
+    {
+        this.setState({
+            searching: label
+        })
+
+        this.props.history.push('/pokedex');
+    }
+
+    handleClear = () =>
+    {
+        this.setState({
+            searching: "" 
+        })
+    }
+
     render() {
         const classes = this.props.classes
+        let openPokemon = this.props.match.params.id
+        let ifOpen = false
+        if(openPokemon)
+        {
+            ifOpen = true;
+        }
+        else
+        {
+            openPokemon = 1;
+        }
+
         return (
             <div>
-                <TextField
-                    className={classes.input}
-                    label="Search"
-                    value={this.state.searching}
-                    onChange={this.handleChange}
-                />
+                <FormControl className={classes.input}>
+                    <InputLabel style={{marginLeft: "20px"}}>Search</InputLabel>
+                    <FilledInput
+                        value={this.state.searching}
+                        onChange={this.handleChange}
+                        margin="none"
+                        endAdornment={
+                            <InputAdornment position="end">
+                                <IconButton onClick = {this.handleClear}>
+                                    <ClearIcon/>
+                                </IconButton>
+                            </InputAdornment>
+                        }
+                    />
+                </FormControl>
                 
                 <div className={classes.pokeWrapper}>
                     <Scrollbars
@@ -91,7 +122,7 @@ class Pokedex extends React.Component {
                         autoHideTimeout={1000}
                         style={{
                             width: "100%",
-                            height: "calc(100vh - 162px)",
+                            height: "calc(100vh - 180px)",
                         }} 
                     >
                         <Paper className={classes.pokeContent}>
@@ -101,9 +132,10 @@ class Pokedex extends React.Component {
                         </Paper>
                     </Scrollbars>
                     <Window
-                        pokemon={this.pokemons[this.state.openPokemon]}
-                        ifOpen={this.state.ifOpen}
+                        pokemon={this.pokemons[openPokemon]}
+                        ifOpen={ifOpen}
                         onClose={this.handleClose}
+                        chipOnClick={this.chipClick}
                     />
                 </div>
             </div>
@@ -111,4 +143,4 @@ class Pokedex extends React.Component {
     }
 }
 
-export default withStyles(classes)(Pokedex)
+export default withRouter(withStyles(classes)(Pokedex))
