@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/torchic-pokedex/static/css/main.34de6062.chunk.css",
-    "main.js": "/torchic-pokedex/static/js/main.7b148b0d.chunk.js",
-    "main.js.map": "/torchic-pokedex/static/js/main.7b148b0d.chunk.js.map",
+    "main.js": "/torchic-pokedex/static/js/main.8573c5ba.chunk.js",
+    "main.js.map": "/torchic-pokedex/static/js/main.8573c5ba.chunk.js.map",
     "runtime-main.js": "/torchic-pokedex/static/js/runtime-main.7d588210.js",
     "runtime-main.js.map": "/torchic-pokedex/static/js/runtime-main.7d588210.js.map",
     "static/js/2.04084a55.chunk.js": "/torchic-pokedex/static/js/2.04084a55.chunk.js",
     "static/js/2.04084a55.chunk.js.map": "/torchic-pokedex/static/js/2.04084a55.chunk.js.map",
     "index.html": "/torchic-pokedex/index.html",
-    "precache-manifest.94d22616aa359255819a89a633e8ded2.js": "/torchic-pokedex/precache-manifest.94d22616aa359255819a89a633e8ded2.js",
+    "precache-manifest.5754efd601724e731768237ed7e322d3.js": "/torchic-pokedex/precache-manifest.5754efd601724e731768237ed7e322d3.js",
     "service-worker.js": "/torchic-pokedex/service-worker.js",
     "static/css/main.34de6062.chunk.css.map": "/torchic-pokedex/static/css/main.34de6062.chunk.css.map",
     "static/media/Torchic1.png": "/torchic-pokedex/static/media/Torchic1.28c52578.png"
@@ -17,6 +17,6 @@
     "static/js/runtime-main.7d588210.js",
     "static/js/2.04084a55.chunk.js",
     "static/css/main.34de6062.chunk.css",
-    "static/js/main.7b148b0d.chunk.js"
+    "static/js/main.8573c5ba.chunk.js"
   ]
 }
