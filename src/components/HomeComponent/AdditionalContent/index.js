@@ -30,9 +30,6 @@ class Additional extends React.Component {
         const dateString = `${date.getFullYear()}${(date.getMonth()<10) ? '0' : ''}${date.getMonth()}${(date.getDate()<10) ? '0' : ''}${date.getDate()}`
 
         const todayString = `${new Date().getFullYear()}${(new Date().getMonth()<10) ? '0' : ''}${new Date().getMonth()}${(new Date().getDate()<10) ? '0' : ''}${new Date().getDate()}`
-
-        console.log(dateString)
-        console.log(todayString)
         
         if(dateString<=todayString)
         {
@@ -55,7 +52,7 @@ class Additional extends React.Component {
         let dateNum = genID(this.state.dayClicked.toLocaleString(), this.state.monthClicked.toLocaleString(), this.state.yearClicked.toLocaleString())
 
         return (
-            <Container style={{display: 'flex', flexDirection: 'row', justifyContent: 'center'}}>             
+            <Container style={{display: 'flex', flexDirection: 'row', justifyContent: 'center', marginBottom: 30}}>             
                 <div style={{marginRight: 30}}>
                     <PokemonOfTheDay
                         pokemon={this.pokemons[dateNum % 151]}

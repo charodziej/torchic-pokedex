@@ -54,7 +54,8 @@ class Calendar extends React.Component {
     changeMonth = (date) =>
     {
         this.setState({
-            month: date.getMonth()
+            month: date.getMonth(),
+            year: date.getFullYear()
         })
 
         this.props.dayOnClick(date)
