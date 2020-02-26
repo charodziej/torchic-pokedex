@@ -50,6 +50,7 @@ const classes = theme => ({
     title: {
         fontWeight: theme.typography.fontWeightLight,
         fontSize: 40,
+        fontFamily: 'Indie Flower',
 
         [theme.breakpoints.down('md')]:{
             fontSize: 25,

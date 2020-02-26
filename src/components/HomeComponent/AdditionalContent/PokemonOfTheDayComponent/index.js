@@ -1,37 +1,35 @@
 import React from 'react';
 import {Card, CardActionArea, CardMedia, CardContent, Typography} from '@material-ui/core';
 import {withStyles} from '@material-ui/core/styles';
-import handleViewport from 'react-in-viewport'
 import {withRouter} from 'react-router-dom';
 
 const classes = theme => ({
     card: {
-        width: 180,
-        margin: 10,
+        width: 250,
         boxShadow: 8,
-        borderRadius: 10
+        borderRadius: 5
     },
 
     pokeName: {
-        fontSize: 12,
+        fontSize: 24,
         textTransform: 'uppercase',
-        letterSpacing: '1.35mm',
-        textAlign: 'center',
-        alignItems: 'center',
+        letterSpacing: '2.7mm',
+        fontFamily: 'Indie Flower',
     },
 
-    properties: {
-        fontSize: 15,
-    }
+    subtitle: {
+        fontSize: 12,
+        textTransform: 'uppercase',
+        letterSpacing: '1mm',
+    },
 })
 
-class Pokemon extends React.PureComponent {
+class PokemonOfTheDay extends React.PureComponent {
     render() {
         const classes = this.props.classes
 
         return (
-            <div ref={this.props.forwardedRef} style={{width: 200, height:250}}>
-            {this.props.inViewport &&
+            <div>
             <Card 
                 className={classes.card} 
                 raised={true} elevation={4} 
@@ -40,20 +38,22 @@ class Pokemon extends React.PureComponent {
                 <CardActionArea>
                     <CardMedia
                         component="img"
+                        style={{width: 150, marginLeft: 'auto', marginRight: 'auto', paddingTop: 10}}
                         alt={this.props.pokemon.name}
-                        image={this.props.pokemon.img}
-                        style={{height: 170}}
+                        image={this.props.pokemon.img}  
                     />
-                    <CardContent>
-                        <Typography className={classes.pokeName}>
+                    <CardContent style={{padding: 20}}>
+                        <Typography className = {classes.pokeName}>
                             {this.props.pokemon.name}
+                        </Typography>
+                        <Typography className = {classes.subtitle}>
+                            Pokemon Of The Day
                         </Typography>
                     </CardContent>
                 </CardActionArea>
-            </Card> 
-            }
+            </Card>
             </div>
         )
     }
 }
-export default handleViewport(withRouter(withStyles(classes)(Pokemon)))
+export default withRouter(withStyles(classes)(PokemonOfTheDay))

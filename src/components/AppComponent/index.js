@@ -11,7 +11,9 @@ const lightTheme = createMuiTheme({
         primary: colors.orange,
         secondary: {
             main: colors.yellow[500],
-        }
+        },
+        calendarColorPrim: colors.grey[700],
+        calendarColorSec: colors.grey[400]
     }
 })
 
@@ -21,7 +23,9 @@ const darkTheme = createMuiTheme({
         primary: colors.orange,
         secondary: {
             main: colors.yellow[500],
-        }
+        },
+        calendarColorPrim: colors.grey[400],
+        calendarColorSec: colors.grey[700]
     }
 })
 

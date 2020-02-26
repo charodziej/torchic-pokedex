@@ -1,6 +1,7 @@
 import React from 'react';
 import {Container} from '@material-ui/core';
 import Header from './HeaderComponent';
+import Additional from './AdditionalContent';
 
 class Home extends React.Component
 {
@@ -8,6 +9,7 @@ class Home extends React.Component
         return (
             <Container>
                 <Header/>
+                <Additional/>
             </Container>
         )
     }
