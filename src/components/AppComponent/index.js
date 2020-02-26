@@ -57,7 +57,7 @@ export default class App extends React.Component
     
     render() {
         return(
-            <Router >
+            <Router basename="/torchic-pokedex">
             <ThemeProvider theme={this.state.theme}>
             <CssBaseline/>
                 <Menu changeTheme={this.changeTheme}/>

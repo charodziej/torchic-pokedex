@@ -1,6 +1,7 @@
 import React from 'react';
 import {Card, CardActionArea, CardMedia, CardContent, Typography} from '@material-ui/core';
 import {withStyles} from '@material-ui/core/styles';
+import handleViewport from 'react-in-viewport'
 import {withRouter} from 'react-router-dom';
 
 const classes = theme => ({
@@ -29,29 +30,30 @@ class Pokemon extends React.PureComponent {
         const classes = this.props.classes
 
         return (
-            <div>
+            <div ref={this.props.forwardedRef} style={{width: 200, height:250}}>
+            {this.props.inViewport &&
             <Card 
                 className={classes.card} 
                 raised={true} elevation={4} 
                 onClick={() => this.props.handleOpen(this.props.pokemon.id-1)}
             >
                 <CardActionArea>
-                    <div style={{height: 170}}>
                     <CardMedia
                         component="img"
                         alt={this.props.pokemon.name}
-                        image={this.props.pokemon.img}  
+                        image={this.props.pokemon.img}
+                        style={{height: 170}}
                     />
-                    </div>
                     <CardContent>
                         <Typography className={classes.pokeName}>
                             {this.props.pokemon.name}
                         </Typography>
                     </CardContent>
                 </CardActionArea>
-            </Card>
+            </Card> 
+            }
             </div>
         )
     }
 }
-export default withRouter(withStyles(classes)(Pokemon))
+export default handleViewport(withRouter(withStyles(classes)(Pokemon)))
