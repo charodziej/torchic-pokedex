@@ -4,8 +4,8 @@ import Calendar from '../AdditionalContent/CalendarComponent';
 import {Container} from '@material-ui/core';
 import List1 from '../../../assets/pokedex.json';
 import List2 from '../../../assets/pokemon.json';
-import {withRouter} from 'react-router-dom';
 import genID from '../../../utils/PokemonOfTheDayGen';
+import EffectivenessPreview from './EffectivenessPreviewComponent'
 
 class Additional extends React.Component {
 
@@ -26,7 +26,6 @@ class Additional extends React.Component {
 
     dayOnClick = (date) =>
     {
-        
         const dateString = `${date.getFullYear()}${(date.getMonth()<10) ? '0' : ''}${date.getMonth()}${(date.getDate()<10) ? '0' : ''}${date.getDate()}`
 
         const todayString = `${new Date().getFullYear()}${(new Date().getMonth()<10) ? '0' : ''}${new Date().getMonth()}${(new Date().getDate()<10) ? '0' : ''}${new Date().getDate()}`
@@ -48,18 +47,19 @@ class Additional extends React.Component {
     }
 
     render() {
+        let dateNum = genID(this.state.dayClicked.toString(), this.state.monthClicked.toString(), this.state.yearClicked.toString())
 
-        let dateNum = genID(this.state.dayClicked.toLocaleString(), this.state.monthClicked.toLocaleString(), this.state.yearClicked.toLocaleString())
+        let weaknesses = this.pokemons[dateNum % 151].weaknesses
 
         return (
-            <Container style={{display: 'flex', flexDirection: 'row', justifyContent: 'center', marginBottom: 30}}>             
-                <div style={{marginRight: 30}}>
+            <Container style={{display: 'flex', flexDirection: 'row', justifyContent: 'space-evenly', marginBottom: 30, flexWrap: 'wrap'}}>             
+                <div style={{ margin: 16 }}>
                     <PokemonOfTheDay
                         pokemon={this.pokemons[dateNum % 151]}
                         handleOpen={this.handleOpen}
                     />
                 </div>
-                <div style={{marginLeft: 30}}>
+                <div style={{ margin: 16 }}>
                     <Calendar
                         dayClicked={this.state.dayClicked}
                         monthClicked={this.state.monthClicked}
@@ -67,9 +67,15 @@ class Additional extends React.Component {
                         dayOnClick={this.dayOnClick}
                     />
                 </div>
+                <div style={{ margin: 16 }}>
+                    <EffectivenessPreview
+                        currentPokemon={this.pokemons[dateNum % 151]}
+                        weaknesses={weaknesses}
+                    />
+                </div>
             </Container> 
         )
     }
 }
 
-export default withRouter(Additional)
+export default Additional

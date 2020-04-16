@@ -1,5 +1,5 @@
 import React from 'react';
-import {Paper, Table, TableRow, TableCell, IconButton, Typography} from '@material-ui/core';
+import {Paper, Table, TableRow, TableCell, IconButton, Typography, TableBody} from '@material-ui/core';
 import {amber} from '@material-ui/core/colors';
 import {withStyles} from '@material-ui/core/styles';
 import {ChevronLeft, ChevronRight} from '@material-ui/icons';
@@ -137,7 +137,8 @@ class Calendar extends React.Component {
         while(this.state.month === current.getMonth());
 
         return (
-            <Paper style={{maxWidth: 616}}>
+            <Paper style={{maxWidth: 616}}
+            elevation={4}>
                 <Typography className={classes.monthHeader}>
                     <IconButton onClick={() => this.move(0, 11, -1)}>
                         <ChevronLeft/>
@@ -152,13 +153,15 @@ class Calendar extends React.Component {
                     </IconButton>
                 </Typography>
                 <Table>
-                    {calendar.map((week) => (
-                        <TableRow>
-                            {week.map((day) => (
-                                <TableCell style={{height: '32px', padding: '5px'}}>{day}</TableCell>
-                            ))}
-                        </TableRow>
-                    ))}
+                    <TableBody>
+                        {calendar.map((week, weekIndex) => (
+                            <TableRow key={weekIndex}>
+                                {week.map((day, dayIndex) => (
+                                    <TableCell key={dayIndex} style={{height: '32px', padding: '5px'}}>{day}</TableCell>
+                                ))}
+                            </TableRow>
+                        ))}
+                    </TableBody>
                 </Table>
             </Paper>
         )

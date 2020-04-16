@@ -1,5 +1,5 @@
 import React from 'react';
-import {AppBar, Button, Toolbar, Typography, IconButton, withStyles} from '@material-ui/core';
+import {AppBar, Button, Toolbar, IconButton, withStyles} from '@material-ui/core';
 import {Home, Language, Brightness7, Brightness4} from '@material-ui/icons';
 import {Link} from 'react-router-dom';
 /*import ClockLib from 'react-live-clock';*/
@@ -19,8 +19,13 @@ class Menu extends React.Component
                             </IconButton>
                         </Link>
                         <Link to='/pokedex'>
-                            <Button style = {{letterSpacing: '1mm'}}>
+                            <Button style = {{letterSpacing: '1mm', marginRight: spacing}}>
                                 Pokédex
+                            </Button>
+                        </Link>
+                        <Link to='/chart'>
+                            <Button style = {{letterSpacing: '1mm'}}>
+                                Chart
                             </Button>
                         </Link>
                         <IconButton style = {{marginLeft: "auto", marginRight: spacing}}>
@@ -29,10 +34,8 @@ class Menu extends React.Component
                         <IconButton style = {{marginRight: spacing}} onClick = {this.props.changeTheme}>
                             {(this.props.theme.palette.type === "light") ? (<Brightness4/>) : (<Brightness7/>)}
                         </IconButton>
-                        <Typography>
                             {/*<ClockLib format={'HH:mm:ss'} ticking={true} timezone={'PL/Europe'} />*/}
                             <Clock/>
-                        </Typography>
                     </Toolbar>
                 </AppBar>
             </div>

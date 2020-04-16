@@ -5,7 +5,7 @@ import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 import { colors, CssBaseline } from '@material-ui/core';
 import {BrowserRouter as Router} from 'react-router-dom';
 
-const lightTheme = createMuiTheme({
+const lightTheme = {
     palette: {
         type: "light",
         primary: colors.orange,
@@ -15,9 +15,9 @@ const lightTheme = createMuiTheme({
         calendarColorPrim: colors.grey[700],
         calendarColorSec: colors.grey[400]
     }
-})
+}
 
-const darkTheme = createMuiTheme({
+const darkTheme = {
     palette: {
         type: "dark",
         primary: colors.orange,
@@ -27,7 +27,7 @@ const darkTheme = createMuiTheme({
         calendarColorPrim: colors.grey[400],
         calendarColorSec: colors.grey[700]
     }
-})
+}
 
 export default class App extends React.Component
 {
@@ -35,7 +35,7 @@ export default class App extends React.Component
     {
         super(props)
         this.state = {
-            theme: lightTheme
+            theme: { ...lightTheme, ...JSON.parse(localStorage.theme || "{}") }
         }
     }
 
@@ -46,19 +46,23 @@ export default class App extends React.Component
             this.setState({
                 theme: lightTheme
             })
+
+            localStorage.theme = JSON.stringify(lightTheme)
         }
         else
         {
             this.setState({
                 theme: darkTheme
             })
+
+            localStorage.theme = JSON.stringify(darkTheme)
         }
     }
     
     render() {
         return(
             <Router basename="/torchic-pokedex">
-            <ThemeProvider theme={this.state.theme}>
+            <ThemeProvider theme={createMuiTheme(this.state.theme)}>
             <CssBaseline/>
                 <Menu changeTheme={this.changeTheme}/>
                 <Routes/>
